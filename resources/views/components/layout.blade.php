@@ -8,17 +8,42 @@
 </head>
 <body class="bg-gray-100 font-sans">
 
-  <!-- Navbar -->
-  <nav class="bg-gray-900 text-white p-4">
-    <div class="container mx-auto flex justify-between items-center">
-      <h1 class="text-2xl font-bold">ReroWebsite</h1>
-      <ul class="flex space-x-6">
-        <li><a href="#home" class="hover:text-gray-300">Home</a></li>
-        <li><a href="#about" class="hover:text-gray-300">About</a></li>
-        <li><a href="#contact" class="hover:text-gray-300">Contact</a></li>
-      </ul>
+  
+<nav class="bg-gray-900 text-white shadow-md">
+    <div class="container mx-auto flex justify-between items-center py-4 px-6">
+        <!-- Logo / Brand -->
+        <h1 class="text-2xl font-extrabold tracking-wide hover:text-yellow-400 transition-colors">
+            ReroWebsite
+        </h1>
+
+        <!-- Navigation Links -->
+        <ul class="flex space-x-8 text-lg">
+            <li>
+                <a href="/" 
+                   class="transition-colors duration-300 hover:text-gray-300 {{ request()->is('/') ? 'text-yellow-400 font-bold underline underline-offset-4' : '' }}">
+                    Home
+                </a>
+            </li>
+            <li>
+                <a href="/jobs" 
+                   class="transition-colors duration-300 hover:text-gray-300 {{ request()->is('jobs') ? 'text-yellow-400 font-bold underline underline-offset-4' : '' }}">
+                    Jobs
+                </a>
+            </li>
+        </ul>
+
+        <!-- Optional Button -->
+        <div>
+            <a href="#contact" 
+               class="bg-yellow-400 text-gray-900 font-semibold px-4 py-2 rounded-lg shadow hover:bg-yellow-300 transition-colors">
+               Contact Us
+            </a>
+        </div>
     </div>
-  </nav>
+</nav>
+
+
+
 
   <!-- Main Content -->
   <main>
@@ -42,6 +67,8 @@
         </p>
       </div>
     </section>
+
+    
 
     <!-- Contact Section -->
     <section id="contact" class="py-20 bg-gray-200">
