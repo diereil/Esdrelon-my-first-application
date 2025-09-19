@@ -1,27 +1,49 @@
 <x-layout>
-    <x-slot name="heading">
-        Job Details
-    </x-slot>
+    <x-slot name="heading">Job Details</x-slot>
 
-    <div class="container mx-auto py-10">
-        <div class="bg-white rounded-xl shadow-lg p-8 max-w-lg mx-auto 
-                    hover:bg-green-600 hover:shadow-2xl hover:-translate-y-1 
-                    transform transition duration-300">
+    <div class="container mx-auto py-16">
+        <div class="bg-white rounded-2xl shadow-2xl p-10 max-w-2xl mx-auto text-center">
             
-            <h2 class="text-2xl font-bold mb-4 text-gray-800 hover:text-white">
+            <!-- Company Logo -->
+            <img src="https://logo.clearbit.com/example.com" alt="Company Logo" 
+                 class="w-20 h-20 mx-auto rounded-full shadow mb-6">
+
+            <!-- Job Title -->
+            <h2 class="text-3xl font-extrabold mb-4 text-gray-900">
                 {{ $job['title'] }}
             </h2>
-            <p class="mb-2 text-gray-700 hover:text-white">
+
+            <!-- Job Info -->
+            <p class="text-lg text-gray-700 mb-2">
                 <strong>Salary:</strong> {{ $job['salary'] }}
             </p>
-            <p class="mb-6 text-gray-600 hover:text-white">
+            <p class="text-lg text-gray-600 mb-6">
                 <strong>Category:</strong> {{ $job['type'] }}
             </p>
 
-            <a href="/jobs" 
-               class="inline-block text-blue-600 hover:text-white font-semibold hover:underline">
-                ← Back to Jobs
+            <!-- Apply Button -->
+            <a href="mailto:apply@example.com" 
+               class="bg-yellow-400 text-gray-900 px-6 py-3 rounded-lg font-semibold shadow hover:bg-yellow-300 transition">
+               📩 Apply Now
             </a>
+
+            <!-- Back Button -->
+            <div class="mt-6">
+                <a href="/jobs" 
+                   class="text-blue-600 font-semibold hover:underline">
+                    ← Back to Jobs
+                </a>
+            </div>
         </div>
     </div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gradient-to-r from-indigo-800 to-blue-900 text-white text-center rounded-xl shadow-xl">
+        <h2 class="text-4xl font-bold mb-6">Contact Us</h2>
+        <p class="mb-6 max-w-2xl mx-auto opacity-90">Have questions or need support? Reach out anytime.</p>
+        <a href="mailto:info@example.com" 
+           class="bg-yellow-400 text-gray-900 font-semibold px-8 py-3 rounded-lg shadow hover:bg-yellow-300 transition">
+          📩 Send Email
+        </a>
+    </section>
 </x-layout>

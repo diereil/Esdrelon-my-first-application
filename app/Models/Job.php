@@ -2,23 +2,24 @@
 
 namespace App\Models;
 
-class Job
-{
-    public static function all()
-    {
-        return [
-            ['id' => 1, 'title' => 'Director', 'salary' => '$50,000', 'type' => 'Management'],
-            ['id' => 2, 'title' => 'Programmer', 'salary' => '$10,000', 'type' => 'Technical'],
-            ['id' => 3, 'title' => 'Teacher', 'salary' => '$40,000', 'type' => 'Education'],
-            ['id' => 4, 'title' => 'Designer', 'salary' => '$30,000', 'type' => 'Creative'],
-            ['id' => 5, 'title' => 'Marketing Manager', 'salary' => '$45,000', 'type' => 'Marketing'],
-        ];
-    }
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-    public static function find($id)
+class Job extends Model
+{
+    use HasFactory;
+
+    protected $table = 'job_listings';
+
+    protected $fillable = [
+        'title',
+        'salary',
+        'employer_id',
+    ];
+
+    // Relationship
+    public function employer()
     {
-        $job = \Illuminate\Support\Arr::first(static::all(), fn($job) => $job['id'] == $id);
-        if (!$job) abort(404);
-        return $job;
+        return $this->belongsTo(Employer::class, 'employer_id');
     }
 }
