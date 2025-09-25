@@ -8,13 +8,16 @@ Route::get('/', function () {
     return view('home', ['heading' => 'Welcome to ReroWebsite']);
 });
 
-// Jobs List (dynamic)
+
 Route::get('/jobs', function () {
     return view('jobs', [
-        'heading' => 'Jobs Page',
-        'jobs' => Job::all()
+        'jobs' => \App\Models\Job::with('employer')->paginate(9) // 9 per page for your 3-column grid
     ]);
 });
+
+
+
+
 
 // Single Job - dynamic
 Route::get('/jobs/{id}', function ($id) {

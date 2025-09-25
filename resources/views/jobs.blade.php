@@ -12,43 +12,50 @@
     <!-- Jobs Grid -->
     <div class="container mx-auto pb-20">
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-            @foreach ($jobs as $job)
-            <a href="/jobs/{{ $job->id }}" 
-               class="block bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl hover:-translate-y-1 transform transition">
-                
-                <div class="flex items-center space-x-4 mb-4">
-                    <!-- Placeholder logo -->
-                    <img src="https://logo.clearbit.com/example.com" alt="Company Logo" class="w-12 h-12 rounded-full shadow">
-                    <div>
-                        <h3 class="text-xl font-semibold text-gray-800">{{ $job->title }}</h3>
-                        <p class="text-gray-500 text-sm">
-                            {{ $job->employer->name ?? 'Unknown Employer' }}
-                        </p>
+            @forelse ($jobs as $job)
+                <a href="/jobs/{{ $job->id }}" 
+                   class="block bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl hover:-translate-y-1 transform transition">
+                    
+                    <div class="flex items-center space-x-4 mb-4">
+                        <!-- Company logo (fallback to example.com) -->
+                        <img src="https://logo.clearbit.com/{{ $job->employer->website ?? 'example.com' }}" alt="Company Logo" class="w-12 h-12 rounded-full shadow">
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-800">{{ $job->title }}</h3>
+                            <p class="text-gray-500 text-sm">
+                                {{ $job->employer->name ?? 'Unknown Employer' }}
+                            </p>
+                        </div>
                     </div>
-                </div>
 
-                <p class="text-gray-600 mb-4">
-                    We are hiring a <strong>{{ $job->type ?? 'Professional' }}</strong> to join our team.
-                </p>
-                <div class="mt-4">
-                    @foreach($job->tags as $tag)
-                        <span class="bg-gray-200 text-gray-700 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">
-                            {{ $tag->name }}
+                    <p class="text-gray-600 mb-4">
+                        We are hiring a <strong>{{ $job->type ?? 'Professional' }}</strong> to join our team.
+                    </p>
+
+                    <div class="mt-4">
+                        @foreach($job->tags as $tag)
+                            <span class="bg-gray-200 text-gray-700 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">
+                                {{ $tag->name }}
+                            </span>
+                        @endforeach
+                    </div>
+
+                    <div class="flex justify-between items-center mt-4">
+                        <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full font-medium">
+                            {{ $job->type ?? 'General' }}
                         </span>
-                    @endforeach
-                </div>
+                        <span class="text-lg font-bold text-gray-800">{{ $job->salary ?? 'Negotiable' }}</span>
+                    </div>
+                </a>
+            @empty
+                <p class="col-span-3 text-center text-gray-500">No jobs available at the moment.</p>
+            @endforelse
+        </div> <!-- end grid -->
 
-
-                <div class="flex justify-between items-center">
-                    <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full font-medium">
-                        {{ $job->type ?? 'General' }}
-                    </span>
-                    <span class="text-lg font-bold text-gray-800">{{ $job->salary }}</span>
-                </div>
-            </a>
-            @endforeach
+        <!-- Pagination -->
+        <div class="mt-10 flex justify-center">
+            {{ $jobs->withQueryString()->links() }}
         </div>
-    </div>
+    </div> <!-- end container -->
 
     <!-- Contact Section -->
     <section id="contact" class="py-20 bg-gradient-to-r from-indigo-800 to-blue-900 text-white text-center rounded-xl shadow-xl">
