@@ -25,6 +25,11 @@
             <p class="text-lg text-gray-600 mb-6">
                 <strong>Category:</strong> {{ $job->type ?? 'General' }}
             </p>
+            <a href="/jobs/{{ $job->id }}/edit"
+            class="bg-yellow-500 px-3 py-2 text-white rounded hover:bg-yellow-400">
+            Edit Job
+            </a>
+
 
             <!-- ✅ Tags Section (correct placement inside the card) -->
             <div class="mt-4">

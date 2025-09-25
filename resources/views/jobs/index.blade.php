@@ -7,6 +7,14 @@
         <p class="text-lg md:text-xl opacity-90 max-w-2xl mx-auto">
             Explore thousands of job opportunities and find the right one for you.
         </p>
+
+        <!-- ✅ Create Job Button inside banner -->
+        <div class="mt-8">
+            <a href="/jobs/create"
+               class="inline-block bg-green-500 px-6 py-3 text-white font-semibold rounded-lg shadow hover:bg-green-400 transition">
+                ➕ Create Job
+            </a>
+        </div>
     </section>
 
     <!-- Jobs Grid -->
@@ -17,8 +25,10 @@
                    class="block bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl hover:-translate-y-1 transform transition">
                     
                     <div class="flex items-center space-x-4 mb-4">
-                        <!-- Company logo (fallback to example.com) -->
-                        <img src="https://logo.clearbit.com/{{ $job->employer->website ?? 'example.com' }}" alt="Company Logo" class="w-12 h-12 rounded-full shadow">
+                        <!-- Company logo -->
+                        <img src="https://logo.clearbit.com/{{ $job->employer->website ?? 'example.com' }}" 
+                             alt="Company Logo" 
+                             class="w-12 h-12 rounded-full shadow">
                         <div>
                             <h3 class="text-xl font-semibold text-gray-800">{{ $job->title }}</h3>
                             <p class="text-gray-500 text-sm">
