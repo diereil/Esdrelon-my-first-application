@@ -1,4 +1,4 @@
-CREATE TABLE ORGS
+job_listingsCREATE TABLE ORGS
              (DEPTNUMB SMALLINT NOT NULL, 
               DEPTNAME VARCHAR(14),
               MANAGER SMALLINT, 

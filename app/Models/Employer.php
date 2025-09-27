@@ -9,9 +9,10 @@ class Employer extends Model
 {
     use HasFactory;
 
-    // Relationships
+    protected $fillable = ['name']; // add fields you need
+
     public function jobs()
     {
-        return $this->hasMany(Job::class, 'employer_id');
+        return $this->hasMany(JobListing::class);
     }
 }
